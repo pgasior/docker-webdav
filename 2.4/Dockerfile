@@ -12,7 +12,7 @@ RUN set -ex; \
     mkdir -p "/var/www/html"; \
     # Create directories for Dav data and lock database.
     mkdir -p "/var/lib/dav/data"; \
-    touch "/var/lib/dav/DavLock"; \
+    # touch "/var/lib/dav/DavLock"; \
     chown -R www-data:www-data "/var/lib/dav"; \
     \
     # Enable DAV modules.
@@ -47,7 +47,7 @@ RUN set -ex; \
     ln -s ../conf-available/dav.conf "conf/conf-enabled"; \
     ln -s ../sites-available/default.conf "conf/sites-enabled"; \
     # Install openssl if we need to generate a self-signed certificate.
-    apk add --no-cache openssl
+    apk add --no-cache openssl apr-util apr-util-dbm_db
 
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 EXPOSE 80/tcp 443/tcp
